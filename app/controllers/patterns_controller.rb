@@ -25,7 +25,7 @@ class PatternsController < ApplicationController
   # POST /patterns.json
   def create
     @pattern = Pattern.new(pattern_params)
-
+    
     respond_to do |format|
       if @pattern.save
         format.html { redirect_to @pattern, notice: 'Pattern was successfully created.' }
