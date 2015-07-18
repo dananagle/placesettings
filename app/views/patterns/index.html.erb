@@ -1,0 +1,31 @@
+<h1>Listing Patterns</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Manufacturer</th>
+      <th>Description</th>
+      <th>Website</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @patterns.each do |pattern| %>
+      <tr>
+        <td><%= pattern.name %></td>
+        <td><%= pattern.manufacturer %></td>
+        <td><%= pattern.description %></td>
+        <td><%= pattern.website %></td>
+        <td><%= pattern.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if current_user %>
+<%= link_to 'New Pattern', new_pattern_path %>
+<% end %>
