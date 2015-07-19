@@ -1,4 +1,5 @@
 class PatternsController < ApplicationController
+before_action :authenticate_user, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_pattern, only: [:show, :edit, :update, :destroy]
 
   # GET /patterns
@@ -24,8 +25,8 @@ class PatternsController < ApplicationController
   # POST /patterns
   # POST /patterns.json
   def create
-    @pattern = Pattern.new(pattern_params)
-    
+    @pattern = current_user.patterns.new(pattern_params)
+
     respond_to do |format|
       if @pattern.save
         format.html { redirect_to @pattern, notice: 'Pattern was successfully created.' }
@@ -69,6 +70,6 @@ class PatternsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pattern_params
-      params.require(:pattern).permit(:name, :manufacturer, :description, :price, :color_metal, :color_theme, :website, :address, :user_id)
+      params.require(:pattern).permit(:name, :manufacturer, :description, :price, :color_metal, :color_theme, :website, :address)
     end
 end
